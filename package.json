@@ -1,0 +1,19 @@
+{
+  "name": "microserviceassignment",
+  "version": "1.0.0",
+  "description": "Cloud Development Frameworks Assignment 2",
+  "main": "frontend.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faoiltiarnadev/MicroserviceAssignment.git"
+  },
+  "author": "Faoiltiarna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/faoiltiarnadev/MicroserviceAssignment/issues"
+  },
+  "homepage": "https://github.com/faoiltiarnadev/MicroserviceAssignment#readme"
+}
