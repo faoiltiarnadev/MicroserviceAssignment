@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: backend
+  name: backend
+spec:
+  replicas: 2
+  selector:
+    name: backend
+  template:
+    metadata:
+      labels:
+        name: backend
+    spec:
+      containers:
+      - image: gcr.io/microservice-assignment/backend:1.0
+        name: backend
+        ports:
+        - containerPort: 50051
+          name: backend

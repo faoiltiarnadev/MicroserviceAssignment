@@ -1,5 +1,34 @@
-var http = require('http');
+var url = require('url');
+var grpc = require('grpc');
 
-http.createServer(function (req, res) {
-  res.end('Faoiltiarna Microservice Assignment!');
-}).listen(3000);
+var proto = grpc.load('interface.proto');
+
+var client = new proto.anagram.AnagramService('backend:50051');
+
+function getAnagram(response, query) {
+
+    console.log(query);
+
+    var word = (query.word.toLocaleLowerCase()) ? query.word.toLocaleLowerCase() : "hello";
+
+    var request = {
+        word: word
+    }
+
+    client.getAnagram(request, function(error, anagram) {
+        if (error) {
+            response.end(JSON.stringify(error));
+        } else {
+            response.end("Distance = " + JSON.stringify(anagram) + "\n");
+        }
+    });
+}
+
+var http = require('http');
+var server = http.createServer(function(request, response) {
+    response.writeHead(200, {
+        "Content-Type": "text/plain"
+    });
+    getAnagram(response, url.parse(request.url, true).query);
+});
+server.listen(3000);

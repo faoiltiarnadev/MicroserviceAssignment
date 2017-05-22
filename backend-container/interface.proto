@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package anagram;
+
+service AnagramService {
+	rpc GetAnagram (Word) returns (Anagram) {}
+}
+
+message Word {
+	string word = 1;
+}
+
+message Anagram {
+	string question = 1;
+	string answer = 2;
+}
