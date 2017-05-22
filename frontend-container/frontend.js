@@ -9,7 +9,7 @@ function getAnagram(response, query) {
 
     console.log(query);
 
-    var word = (query.word.toLocaleLowerCase()) ? query.word.toLocaleLowerCase() : "hello";
+    var word = query.word.toLocaleLowerCase() || "hello";
 
     var request = {
         word: word
@@ -19,7 +19,7 @@ function getAnagram(response, query) {
         if (error) {
             response.end(JSON.stringify(error));
         } else {
-            response.end("Distance = " + JSON.stringify(anagram) + "\n");
+            response.end(anagram.question + " is an anagram of " + anagram.answer + "\n");
         }
     });
 }
