@@ -1,5 +1,8 @@
-var url = require('url');
 var grpc = require('grpc');
+var express = require('express');
+
+var app = express();
+var router = express.Router();
 
 var proto = grpc.load('interface.proto');
 
@@ -9,7 +12,13 @@ function getAnagram(response, query) {
 
     console.log(query);
 
-    var word = query.word.toLocaleLowerCase() || "hello";
+    var word;
+
+    if (!query.word) {
+        word = "hello";
+    } else {
+        word = query.word.toLocaleLowerCase();
+    }
 
     var request = {
         word: word
@@ -24,11 +33,13 @@ function getAnagram(response, query) {
     });
 }
 
-var http = require('http');
-var server = http.createServer(function(request, response) {
+router.get('/', function(request, response) {
     response.writeHead(200, {
         "Content-Type": "text/plain"
     });
-    getAnagram(response, url.parse(request.url, true).query);
-});
-server.listen(3000);
+
+    getAnagram(response, request.query);
+ });
+
+app.use(router);
+app.listen(3000);

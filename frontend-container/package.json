@@ -11,6 +11,7 @@
     "url": ""
   },
   "dependencies": {
+    "express": "^4.15.3",
     "grpc": "~0.10.0"
   },
   "license": "Apache-2.0"
