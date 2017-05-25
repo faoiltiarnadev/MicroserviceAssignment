@@ -14,6 +14,11 @@ router.get('/', function(request, response) {
     //getAnagram(response, request.query);
  });
 
+router.get('/Anagram', function(request, response) {
+
+    response.render('anagramPuzzle');
+});
+
 // Set up the app to use a template engine
 // See https://expressjs.com/en/guide/using-template-engines.html for more information
 // Tells express where the template files are located
