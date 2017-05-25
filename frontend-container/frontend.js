@@ -7,18 +7,15 @@ var app = express();
 var router = express.Router();
 
 var homeController = require('./controllers/homeController');
+var anagramPuzzleController = require('./controllers/anagramPuzzleController');
 
 //var proto = grpc.load('interface.proto');
 //var client = new proto.anagram.AnagramService('backend:50051');
 
 router.get('/', homeController.index);
+router.get('/Anagram', anagramPuzzleController.index);
 
 //getAnagram(response, request.query);
-
-router.get('/Anagram', function(request, response) {
-
-    response.render('anagramPuzzle');
-});
 
 // Set up the app to use a template engine
 // See https://expressjs.com/en/guide/using-template-engines.html for more information

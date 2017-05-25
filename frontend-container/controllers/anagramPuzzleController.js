@@ -1,3 +1,3 @@
 exports.index = function(request, response) {
-    response.render('home');
+    response.render('anagramPuzzle');
 };
