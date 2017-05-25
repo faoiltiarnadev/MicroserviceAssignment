@@ -1,18 +1,19 @@
 //var grpc = require('grpc');
 var express = require('express');
+var path = require('path');
+var compression = require('compression');
+
 var app = express();
 var router = express.Router();
-var compression = require('compression');
+
+var homeController = require('./controllers/homeController');
 
 //var proto = grpc.load('interface.proto');
 //var client = new proto.anagram.AnagramService('backend:50051');
 
-router.get('/', function(request, response) {
+router.get('/', homeController.index);
 
-    response.render('home');
-
-    //getAnagram(response, request.query);
- });
+//getAnagram(response, request.query);
 
 router.get('/Anagram', function(request, response) {
 
@@ -22,7 +23,7 @@ router.get('/Anagram', function(request, response) {
 // Set up the app to use a template engine
 // See https://expressjs.com/en/guide/using-template-engines.html for more information
 // Tells express where the template files are located
-app.set('views', __dirname + '/views');
+app.set('views', path.join(__dirname, 'views'));
 // Tells express that the template engine used will be jade
 app.set('view engine', 'jade');
 
@@ -31,7 +32,7 @@ app.use(compression());
 
 // Add static middleware
 var oneDay = 86400000;
-app.use(express.static(__dirname + '/public', { maxAge: oneDay }));
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: oneDay }));
 
 app.use(router);
 app.listen(3000);
