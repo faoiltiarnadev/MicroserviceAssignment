@@ -1,4 +1,3 @@
-//var grpc = require('grpc');
 var express = require('express');
 var path = require('path');
 var compression = require('compression');
@@ -9,13 +8,8 @@ var router = express.Router();
 var homeController = require('./controllers/homeController');
 var anagramPuzzleController = require('./controllers/anagramPuzzleController');
 
-//var proto = grpc.load('interface.proto');
-//var client = new proto.anagram.AnagramService('backend:50051');
-
 router.get('/', homeController.index);
 router.get('/Anagram', anagramPuzzleController.index);
-
-//getAnagram(response, request.query);
 
 // Set up the app to use a template engine
 // See https://expressjs.com/en/guide/using-template-engines.html for more information
@@ -34,29 +28,3 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: oneDay }));
 app.use(router);
 app.listen(3000);
 
-function getAnagram(response, query) {
-
-    console.log(query);
-
-    var word;
-
-    if (!query.word) {
-        word = "hello";
-    } else {
-        word = query.word.toLocaleLowerCase();
-    }
-
-    var request = {
-        word: word
-    }
-
-    response.end("Hello! :)");
-
-    /* client.getAnagram(request, function(error, anagram) {
-     if (error) {
-     response.end(JSON.stringify(error));
-     } else {
-     response.end(anagram.question + " is an anagram of " + anagram.answer + "\n");
-     }
-     });*/
-}
