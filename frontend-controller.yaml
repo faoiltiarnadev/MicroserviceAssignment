@@ -14,7 +14,7 @@ spec:
         name: frontend
     spec:
       containers:
-      - image: gcr.io/microservice-assignment/frontend:3.0
+      - image: gcr.io/microservice-assignment-2/frontend:3.0
         name: frontend
         ports:
         - containerPort: 3000

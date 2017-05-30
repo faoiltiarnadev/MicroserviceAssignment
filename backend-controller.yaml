@@ -14,7 +14,7 @@ spec:
         name: backend
     spec:
       containers:
-      - image: gcr.io/microservice-assignment/backend:2.0
+      - image: gcr.io/microservice-assignment-2/backend:2.0
         name: backend
         ports:
         - containerPort: 50051
